@@ -16,10 +16,14 @@ def y_noise (y):
 
 def draw (x,y,label):
     plt.scatter(x,y,s=1,label = label, c = 'red')
+    plt.xlabel("x")
+    plt.ylabel("y")
     plt.legend(loc = 1)
 
 def draw_line (x,y,label):
     plt.plot(x,y,label = label)
+    plt.xlabel("epoch")
+    plt.ylabel("loss")
     plt.legend(loc = 1)
 
 #model class:
@@ -29,7 +33,7 @@ class LinearRegression(nn.Module):
         self.layer1 = nn.Linear(in_features=input,out_features = hidden).requires_grad_(True)
         self.layer2 = nn.Linear(in_features=hidden,out_features = output).requires_grad_(True)
 
-    def forward (self, x:torch.Tensor()):
+    def forward (self, x:torch.tensor):
         x = self.layer1(x)
         x = self.layer2(x)
         return x
