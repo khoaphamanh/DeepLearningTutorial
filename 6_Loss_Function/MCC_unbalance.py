@@ -5,14 +5,7 @@ from sklearn.datasets import make_blobs
 from sklearn.model_selection import train_test_split
 from torch import nn
 from sklearn.utils import class_weight
-from sklearn.metrics import (
-    precision_score,
-    recall_score,
-    f1_score,
-    roc_auc_score,
-    average_precision_score,
-    confusion_matrix,
-)
+from sklearn.metrics import f1_score, confusion_matrix
 
 
 # helper function:
@@ -207,13 +200,8 @@ y_pred_train_label = model(X_train).argmax(axis=1).detach().numpy()
 y_pred_test_label = model(X_test).argmax(axis=1).detach().numpy()
 
 # Compute metrics
-# precision = precision_score(y_test, y_pred_test_label, average="weighted")
-# recall = recall_score(y_test, y_pred_test_label, average="weighted")
 f1 = f1_score(y_test, y_pred_test_label, average="weighted")
 conf_matrix = confusion_matrix(y_test, y_pred_test_label)
-
-# print("Precision:", precision)
-# print("Recall:", recall)
 print("F1 Score:", f1)
 print("Confusion Matrix:\n", conf_matrix)
 
